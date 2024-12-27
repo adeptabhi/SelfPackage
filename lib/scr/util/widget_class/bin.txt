@@ -1,0 +1,171 @@
+class VikasTextAutoComplete<T> extends StatelessWidget {
+  final String head;
+  final TextEditingController txtCon;
+  final String hintText;
+  final List<dynamic> Function(String) getList;
+  final String Function(T) getText;
+  final bool isRequired;
+  final Function(T)? onChanged;
+  final Widget? preffixIcon;
+  final Widget? suffixIcon;
+
+  VikasTextAutoComplete(
+      {super.key,
+      required this.head,
+      this.hintText = "",
+      required this.txtCon,
+      required this.getList,
+      required this.getText,
+      this.isRequired = true,
+      this.onChanged,
+      this.preffixIcon,
+      this.suffixIcon,
+      EdgeInsets? padding}) {
+    this.padding =
+        padding ?? const EdgeInsets.only(left: 10, right: 10, top: 10);
+  }
+  late EdgeInsets padding;
+  final GlobalKey _boxKey = GlobalKey();
+  OverlayEntry? _overlayEntry;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: padding,
+      child: SizedBox(
+          key: _boxKey,
+          child: VikasTextField(
+            txtCon: txtCon,
+            head: head,
+            hintText: hintText,
+            isRequired: isRequired,
+            preffixIcon: preffixIcon,
+            suffixIcon: suffixIcon,
+            padding: const EdgeInsets.all(0),
+            onChanged: (p) => onType(context: context, txt: p),
+          )),
+    );
+  }
+
+  void onType({required BuildContext context, required String txt}) {
+    bool isBottom = true;
+    List<T> data = txt.isEmpty ? [] : getList(head).cast<T>();
+    _removeOverlay();
+    final RenderBox renderBox =
+        _boxKey.currentContext!.findRenderObject() as RenderBox;
+    final tabPosition = renderBox.localToGlobal(Offset.zero);
+    double keyboardHeight = EdgeInsets.fromWindowPadding(
+            WidgetsBinding.instance.window.viewInsets,
+            WidgetsBinding.instance.window.devicePixelRatio)
+        .bottom;
+    double scrHeight = MediaQuery.sizeOf(context).height - keyboardHeight;
+    double scrWidth = MediaQuery.sizeOf(context).width;
+    double boxWidth = renderBox.size.width;
+    double top = (tabPosition.dy + renderBox.size.height);
+    double bottom = (scrHeight - top) + (renderBox.size.height - 25);
+    double left = tabPosition.dx;
+    double right = scrWidth - (boxWidth + left);
+    data = data.where((e) => getText(e).toLowerCase().contains(txt)).toList();
+    double dialogHeight = data.length * 45;
+    double bottomBuildArea = scrHeight - top;
+    double topBuildArea = scrHeight - bottom;
+    if (bottomBuildArea < dialogHeight && topBuildArea < dialogHeight) {
+      isBottom = bottomBuildArea > topBuildArea;
+    } else if (bottomBuildArea > 45 * 4 ||
+        bottomBuildArea > 110 && dialogHeight <= (bottom + (45 * 4))) {
+      isBottom = true;
+    } else {
+      isBottom = false;
+    }
+    if (data.isNotEmpty) {
+      _showOverlay(
+          isBottom: isBottom,
+          context: context,
+          padding: isBottom
+              ? EdgeInsets.only(top: top, left: left, right: right)
+              : EdgeInsets.only(
+                  top: 10,
+                  left: left,
+                  right: right,
+                  bottom: bottom + keyboardHeight - 2),
+          width: boxWidth,
+          height: isBottom ? bottomBuildArea : topBuildArea,
+          data: data);
+    }
+  }
+
+  void _showOverlay(
+      {required bool isBottom,
+      required BuildContext context,
+      required EdgeInsets padding,
+      required double width,
+      required double height,
+      required List<T> data}) {
+    _overlayEntry = OverlayEntry(builder: (context) {
+      return GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: _removeOverlay,
+        child: Padding(
+          padding: padding,
+          child: Align(
+            alignment: isBottom ? Alignment.topLeft : Alignment.bottomLeft,
+            child: Container(
+              constraints: BoxConstraints(
+                  minWidth: width,
+                  maxWidth: width,
+                  minHeight: 45,
+                  maxHeight: height),
+              child: Material(
+                elevation: 0,
+                color: const Color(0xFFF2F8FC),
+                child: Card(
+                  margin: EdgeInsets.zero,
+                  surfaceTintColor: const Color(0xFFF2F8FC),
+                  shadowColor: const Color(0xFFF2F8FC),
+                  elevation: 3.0,
+                  shape: BeveledRectangleBorder(
+                      side: const BorderSide(color: Colors.black12, width: 0.5),
+                      borderRadius: BorderRadius.circular(2)),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 0, left: 10, bottom: 0),
+                    child: Scrollbar(
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        itemCount: data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return singleBtn(context, data[index]);
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    });
+    Overlay.of(context).insert(_overlayEntry!);
+  }
+
+  Widget singleBtn(BuildContext context, dynamic mdl) {
+    return ListTile(
+      visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
+      contentPadding: const EdgeInsets.only(left: 0.0, right: 0.0, top: 0.0),
+      title: InkWell(
+        onTap: () {},
+        child: Text(
+          getText(mdl),
+          style: stylesWorkSans(),
+        ),
+      ),
+      onTap: () {},
+    );
+  }
+
+  void _removeOverlay() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+}
