@@ -6,7 +6,7 @@ import 'package:selfpackage/scr/util/widget.dart';
 
 enum _Position { top, bottom, center }
 
-class VikasDropDown<T> extends StatelessWidget {
+class VyDropDown<T> extends StatelessWidget {
   final String head;
   final ValueNotifier<T?> valueNotifier;
   final List Function(String) getList;
@@ -16,7 +16,7 @@ class VikasDropDown<T> extends StatelessWidget {
   final Function(T)? onChanged;
   final bool Function(T)? canSlct;
   late EdgeInsets padding;
-  VikasDropDown(
+  VyDropDown(
       {super.key,
       required this.head,
       required this.valueNotifier,
@@ -93,7 +93,7 @@ class VikasDropDown<T> extends StatelessWidget {
 }
 
 /*IN T Model isVisible variable is required*/
-class VikasMultiDropDown<T> extends StatelessWidget {
+class VyMultiDropDown<T> extends StatelessWidget {
   final String head;
   final List Function(String) getList;
   final String Function(T) getText;
@@ -103,7 +103,7 @@ class VikasMultiDropDown<T> extends StatelessWidget {
   final Function(String)? onChanged;
   final EdgeInsets? padding;
 
-  VikasMultiDropDown(
+  VyMultiDropDown(
       {required this.head,
       required this.getList,
       required this.getText,

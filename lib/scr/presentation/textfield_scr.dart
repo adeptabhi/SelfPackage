@@ -6,8 +6,7 @@ import 'package:selfpackage/bloc/textfield_bloc.dart';
 import 'package:selfpackage/logic/msg.dart';
 import 'package:selfpackage/model/util_mdl.dart';
 import 'package:selfpackage/scr/util/widget.dart';
-import 'package:selfpackage/scr/util/widget_class/vikas_dropdown.dart';
-import 'package:selfpackage/scr/util/widget_class/vikas_textfield.dart';
+import 'package:selfpackage/scr/util/widget_class/vy_textfield.dart';
 
 class TextFieldScr extends StatefulWidget {
   const TextFieldScr({super.key});
@@ -25,7 +24,7 @@ class _TextFieldScrState extends State<TextFieldScr> {
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: ListView(children: <Widget>[
-            VikasTextAutoComplete<IdNameMdl>(
+            VyTextAutoComplete<IdNameMdl>(
                 head: 'Auto Complete',
                 hintText: 'Please Enter',
                 txtCon: bloc.txtCon6,
@@ -33,31 +32,31 @@ class _TextFieldScrState extends State<TextFieldScr> {
                 getText: (mdl) => mdl.name,
                 onChanged: (IdNameMdl? mdl) {}),
             const SizedBox(height: 10),
-            VikasTextField(
+            VyTextField(
                 head: 'Enter Your Name',
                 txtCon: bloc.txtCon1,
                 hintText: 'Enter Your Name'),
             const SizedBox(height: 10),
-            VikasTextField(
+            VyTextField(
                 head: 'Enter Your Number',
                 txtCon: bloc.txtCon2,
                 isNumber: true,
                 maxLen: 10,
                 hintText: 'Enter Your Number'),
             const SizedBox(height: 10),
-            VikasTextField(
+            VyTextField(
                 head: 'Enter Your Password',
                 txtCon: bloc.txtCon3,
                 isHideText: true,
                 hintText: 'Enter Your Password'),
             const SizedBox(height: 10),
-            VikasTextField(
+            VyTextField(
                 head: 'Disable',
                 txtCon: bloc.txtCon4,
                 isEnable: false,
                 hintText: 'Disable'),
             const SizedBox(height: 10),
-            VikasTextAutoComplete<IdNameMdl>(
+            VyTextAutoComplete<IdNameMdl>(
                 head: 'Auto Complete',
                 hintText: 'Please Enter',
                 txtCon: bloc.txtCon5,

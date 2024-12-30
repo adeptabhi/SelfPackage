@@ -7,7 +7,7 @@ import 'package:selfpackage/scr/util/input_decoration.dart';
 import 'package:selfpackage/scr/util/styles.dart';
 import 'package:selfpackage/scr/util/widget.dart';
 
-class VikasTextField extends StatelessWidget {
+class VyTextField extends StatelessWidget {
   final TextEditingController txtCon;
   final String head;
   final String hintText;
@@ -24,7 +24,7 @@ class VikasTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final void Function(String)? onChanged;
   final void Function(String)? onFieldSubmmited;
-  const VikasTextField({
+  const VyTextField({
     super.key,
     required this.txtCon,
     this.head = '',
@@ -98,7 +98,7 @@ class VikasTextField extends StatelessWidget {
   }
 }
 
-class VikasTextAutoComplete<T> extends StatefulWidget {
+class VyTextAutoComplete<T> extends StatefulWidget {
   final String head;
   final TextEditingController txtCon;
   final String hintText;
@@ -109,7 +109,7 @@ class VikasTextAutoComplete<T> extends StatefulWidget {
   final Widget? preffixIcon;
   final Widget? suffixIcon;
   late EdgeInsets padding;
-  VikasTextAutoComplete(
+  VyTextAutoComplete(
       {super.key,
       required this.head,
       this.hintText = "",
@@ -126,11 +126,10 @@ class VikasTextAutoComplete<T> extends StatefulWidget {
   }
 
   @override
-  State<VikasTextAutoComplete<T>> createState() =>
-      _VikasTextAutoCompleteState<T>();
+  State<VyTextAutoComplete<T>> createState() => _VyTextAutoCompleteState<T>();
 }
 
-class _VikasTextAutoCompleteState<T> extends State<VikasTextAutoComplete<T>> {
+class _VyTextAutoCompleteState<T> extends State<VyTextAutoComplete<T>> {
   final GlobalKey _boxKey = GlobalKey();
   OverlayEntry? _overlayEntry;
   final LayerLink _layerLink = LayerLink();
@@ -155,7 +154,7 @@ class _VikasTextAutoCompleteState<T> extends State<VikasTextAutoComplete<T>> {
             link: _layerLink,
             child: SizedBox(
                 key: _boxKey,
-                child: VikasTextField(
+                child: VyTextField(
                   txtCon: widget.txtCon,
                   hintText: widget.hintText,
                   preffixIcon: widget.preffixIcon,

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:selfpackage/bloc/dropdown_bloc.dart';
 import 'package:selfpackage/model/util_mdl.dart';
 import 'package:selfpackage/scr/util/widget.dart';
-import 'package:selfpackage/scr/util/widget_class/vikas_dropdown.dart';
-import 'package:selfpackage/scr/util/widget_class/vikas_textfield.dart';
+import 'package:selfpackage/scr/util/widget_class/Vy_textfield.dart';
+import 'package:selfpackage/scr/util/widget_class/vy_dropdown.dart';
 
 class DropDownScr extends StatefulWidget {
   const DropDownScr({super.key});
@@ -23,51 +23,51 @@ class _DropDownScrState extends State<DropDownScr> {
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: ListView(children: <Widget>[
-            VikasDropDown<IdNameMdl>(
+            VyDropDown<IdNameMdl>(
                 head: 'DropDown',
                 valueNotifier: bloc.dropdown1,
                 getList: bloc.getList,
                 getText: (mdl) => mdl.name),
             const SizedBox(height: 10),
-            VikasMultiDropDown<IdNameVisibleMdl>(
+            VyMultiDropDown<IdNameVisibleMdl>(
                 head: 'Multi DropDown',
                 getList: bloc.getList,
                 getText: (mdl) => mdl.name),
             const SizedBox(height: 10),
-            VikasDropDown<IdNameMdl>(
+            VyDropDown<IdNameMdl>(
                 head: 'DropDown',
                 valueNotifier: bloc.dropdown2,
                 getList: bloc.getList,
                 getText: (mdl) => mdl.name),
             const SizedBox(height: 10),
-            VikasMultiDropDown<IdNameVisibleMdl>(
+            VyMultiDropDown<IdNameVisibleMdl>(
                 head: 'Multi DropDown',
                 getList: bloc.getList,
                 getText: (mdl) => mdl.name),
             const SizedBox(height: 10),
-            VikasDropDown<IdNameMdl>(
+            VyDropDown<IdNameMdl>(
                 head: 'DropDown',
                 valueNotifier: bloc.dropdown3,
                 getList: bloc.getList,
                 getText: (mdl) => mdl.name),
             const SizedBox(height: 10),
-            VikasMultiDropDown<IdNameVisibleMdl>(
+            VyMultiDropDown<IdNameVisibleMdl>(
                 head: 'Multi DropDown',
                 getList: bloc.getList,
                 getText: (mdl) => mdl.name),
             const SizedBox(height: 10),
-            VikasDropDown<IdNameMdl>(
+            VyDropDown<IdNameMdl>(
                 head: 'DropDown',
                 valueNotifier: bloc.dropdown4,
                 getList: bloc.getList,
                 getText: (mdl) => mdl.name),
             const SizedBox(height: 10),
-            VikasMultiDropDown<IdNameVisibleMdl>(
+            VyMultiDropDown<IdNameVisibleMdl>(
                 head: 'Multi DropDown',
                 getList: bloc.getList,
                 getText: (mdl) => mdl.name),
             const SizedBox(height: 10),
-            VikasDropDown<IdNameMdl>(
+            VyDropDown<IdNameMdl>(
                 head: 'DropDown',
                 valueNotifier: bloc.dropdown5,
                 getList: bloc.getList,
