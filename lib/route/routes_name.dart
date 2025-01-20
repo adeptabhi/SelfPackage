@@ -3,4 +3,5 @@ class RoutesName {
   static const String dropdown = '/dropdown';
   static const String textfield = '/textfield';
   static const String dataTable = '/datatable';
+  static const String tabbar = '/tabBar';
 }

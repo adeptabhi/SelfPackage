@@ -5,6 +5,7 @@ import 'package:selfpackage/route/routes_name.dart';
 import 'package:selfpackage/scr/presentation/data_table_scr.dart';
 import 'package:selfpackage/scr/presentation/dropdown_scr.dart';
 import 'package:selfpackage/scr/presentation/route_list_scr.dart';
+import 'package:selfpackage/scr/presentation/tabbar_scr.dart';
 import 'package:selfpackage/scr/presentation/textfield_scr.dart';
 
 class Routes {
@@ -36,6 +37,12 @@ class Routes {
           settings: RouteSettings(name: settings.name),
           pageBuilder: (context, animation, secondaryAnimation) =>
               const DataTableScr(),
+        );
+      case RoutesName.tabbar:
+        return PageRouteBuilder(
+          settings: RouteSettings(name: settings.name),
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const TabBarScr(),
         );
     }
 

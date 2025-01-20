@@ -17,6 +17,7 @@ class RouteListScr extends StatelessWidget {
           screen(context, 'Drop Down', RoutesName.dropdown),
           screen(context, 'Text Field', RoutesName.textfield),
           screen(context, 'Data Table', RoutesName.dataTable),
+          screen(context, 'Tab Bar', RoutesName.tabbar),
         ],
       ),
     );
