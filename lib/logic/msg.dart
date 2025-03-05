@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:developer';
 import 'package:flutter/material.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
@@ -29,14 +31,14 @@ snackBarMsg(BuildContext context, String msg) {
   ));
 }
 
-void logError(String name, {required var msg}) {
-  log('\x1B[31m$msg\x1B[0m', name: '\x1B[37m$name\x1B[0m');
+void logError(String name, {required dynamic msg}) {
+  print('\x1B[37mVikas($name):\x1B[0m \x1B[31m$msg\x1B[0m');
 }
 
-void logInfo(String name, {required var msg}) {
-  log('\x1B[33m$msg\x1B[0m', name: '\x1B[37m$name\x1B[0m');
+void logInfo(String name, {required dynamic msg}) {
+  print('\x1B[37mVikas($name):\x1B[0m \x1B[33m$msg\x1B[0m');
 }
 
-void logSuccess(String name, {required var msg}) {
-  log('\x1B[32m$msg\x1B[0m', name: '\x1B[37m$name\x1B[0m');
+void logSuccess(String name, {required dynamic msg}) {
+  print('\x1B[37mVikas($name):\x1B[0m \x1B[32m$msg\x1B[0m');
 }
