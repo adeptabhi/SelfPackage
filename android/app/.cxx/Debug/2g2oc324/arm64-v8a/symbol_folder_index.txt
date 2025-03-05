@@ -1,0 +1,1 @@
+D:\1_App Flutter\3_Git\SelfPackage\build\app\intermediates\cxx\Debug\2g2oc324\obj\arm64-v8a

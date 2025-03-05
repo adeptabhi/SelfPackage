@@ -1,0 +1,2 @@
+D:/1_App Flutter/3_Git/SelfPackage/android/app/.cxx/Debug/2g2oc324/x86/CMakeFiles/edit_cache.dir
+D:/1_App Flutter/3_Git/SelfPackage/android/app/.cxx/Debug/2g2oc324/x86/CMakeFiles/rebuild_cache.dir
